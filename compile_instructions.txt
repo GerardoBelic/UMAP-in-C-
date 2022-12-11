@@ -1,0 +1,10 @@
+Considerations:
+	1) C++ compiler with support to C++20
+	2) Depending on the compiler, you may suppress the final flag "-ldl"
+	3) The flag "-march=native" may generate a .exe that only works in your machine, so delete if necessary
+	4) The flag "-ffast-math" may present some accuracy errors, delete if necessary
+	5) The compilation was done with GCC 12.2.0 + LLVM/Clang/LLD/LLDB 14.0.6 + MinGW-w64 10.0.0 MSVCRT Runtime
+	   and MSYS2 MinGW64 12.2.0 (this last one with the "-ldl" flag suppressed)
+
+// While on UMAP_Implementation/
+g++ -o umap -I"dependencies/include" -std=c++20 -O2 -m64 -ffast-math -march=native -mfma -static -DEIGEN_NO_DEBUG -DNDEBUG UMAP/main.cpp UMAP/curve_fit.cpp -L"dependencies/libs" -lgsl -lgslcblas -lm -larpack -lgfortran -lopenblas -lgomp -lpthread -lquadmath -ldl
